@@ -150,10 +150,8 @@ public class VentanaJuego extends JFrame{
     		public void actionPerformed(ActionEvent e) {
     			controlador.girar();
     			if (spinClick == 0 && controlador.getSaldo()>=5) {
-					
 					stopClick = 0;
 					spinClick++;
-					controlador.getSaldo() = controlador.getSaldo() - crdtBet;
 					creditsLeftDisplay.setText(String.valueOf(controlador.getSaldo()));
 				} else if (controlador.getSaldo()<5){
 					JOptionPane.showMessageDialog(frame, "ERROR: NO TENES CREDITOS SUFICIENTES PARA APOSTAR");
