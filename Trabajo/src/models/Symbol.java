@@ -1,21 +1,23 @@
 package models;
 
-public class Symbol implements ISymbol {
+public class Symbol {
 
 	int value;
 	String imgPath;
 
-	@Override
+	public Symbol(int id, String path) {
+		this.value = id;
+		this.imgPath = path;
+	}
+
 	public String getImage() {
 		return imgPath;
 	}
 
-	@Override
 	public void setValue(int v) {
 		value = v;
 	}
 
-	@Override
 	public int getValue() {
 		return value;
 	}
