@@ -17,7 +17,7 @@ public class Controlador {
 	private Symbol watermelon;
 
 	private Controlador(int saldoIngresado) {
-		inicializarObjetos()
+		inicializarObjetos(saldoIngresado);
 	}
 
 	public static Controlador miInstancia(int saldoIngresado) {
@@ -27,15 +27,15 @@ public class Controlador {
 		return instancia;
 	}
 
-	private void inicializarObjetos() {
+	private void inicializarObjetos(int saldoIngresado) {
 		this.jugador = new Jugador(saldoIngresado);
 		
-		this.bell = new Symbol(0, Trabajo/src/images/bell.png);
-		this.cherry = new Symbol(1, Trabajo/src/images/cherry.png);
-		this.lemon = new Symbol(2, Trabajo/src/images/lemon.png);
-		this.plum = new Symbol(3, Trabajo/src/images/plum.png);
-		this.redSeven = new Symbol(4, Trabajo/src/images/redseven.png);
-		this.watermelon = new Symbol(5, Trabajo/src/images/watermelon.png);
+		this.bell = new Symbol(0, "Trabajo/src/images/bell.png");
+		this.cherry = new Symbol(1, "Trabajo/src/images/cherry.png");
+		this.lemon = new Symbol(2, "Trabajo/src/images/lemon.png");
+		this.plum = new Symbol(3, "Trabajo/src/images/plum.png");
+		this.redSeven = new Symbol(4, "Trabajo/src/images/redseven.png");
+		this.watermelon = new Symbol(5, "Trabajo/src/images/watermelon.png");
 	}
 
 	public int getSaldo() {
