@@ -53,6 +53,7 @@ public class VentanaJuego extends JFrame{
     
     int spinClick = 0;					//PARA VERIFICAR EL APRETADO DE GIRAR
     int stopClick = 0;					//PARA VERIFICAR EL APRETADO DE FRENAR
+    boolean isSpinning = false;
     
     ArrayList<Symbol> imgsList = new ArrayList<Symbol>();
     int valRan;
@@ -148,6 +149,9 @@ public class VentanaJuego extends JFrame{
     	spin.addActionListener(new ActionListener() {
     		@Override
     		public void actionPerformed(ActionEvent e) {
+    			
+    			//TODO: Cambiar las variables spin por el boolean isSpinning!
+    			
     			controlador.girar();
     			if (spinClick == 0 && controlador.getSaldo()>=5) {
 					stopClick = 0;
