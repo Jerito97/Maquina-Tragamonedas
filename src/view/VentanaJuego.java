@@ -168,7 +168,9 @@ public class VentanaJuego extends JFrame{
     	stop.addActionListener(new ActionListener() {
     		@Override
     		public void actionPerformed(ActionEvent e) {
-
+    			t1.interrupt();
+				t2.interrupt();
+				t3.interrupt();
 					//TODO: Aca se frena los threads.
 
     			int[] symbolImages = controlador.frenar();
