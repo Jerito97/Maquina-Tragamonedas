@@ -2,6 +2,8 @@ package controller;
 
 import models.*;
 
+import java.util.Random;
+
 import javax.swing.JOptionPane;
 
 public class Controlador {
@@ -29,7 +31,7 @@ public class Controlador {
 
 	private void inicializarObjetos(int saldoIngresado) {
 		this.jugador = new Jugador(saldoIngresado);
-		
+
 		this.bell = new Symbol(0, "Trabajo/src/images/bell.png");
 		this.cherry = new Symbol(1, "Trabajo/src/images/cherry.png");
 		this.lemon = new Symbol(2, "Trabajo/src/images/lemon.png");
@@ -49,8 +51,15 @@ public class Controlador {
 		}
 	}
 
-	public void frenar(int valSymbol1, int valSymbol2, int valSymbol3) {
+	public int[] frenar() {
 		estaGirando = false;
+
+		int valSymbol1 = numeroAzar();
+		int valSymbol2 = numeroAzar();
+		int valSymbol3 = numeroAzar();
+		int[] arr = {valSymbol1, valSymbol2, valSymbol3};
+
+		return arr;
 	}
 
 	public void chequear(int valSymbol1, int valSymbol2, int valSymbol3) {
@@ -62,5 +71,17 @@ public class Controlador {
 		} else {
 
 		}
+	}
+
+	public String[] obtenerImagenes(int[] ids) {
+		String[] arr = {};
+		//TODO: Loop For para iterar entre la array de objetos Symbol y obtener las 3 que coinciden con los id
+
+		return arr;
+	}
+
+	private int numeroAzar() {
+		Random rand = new Random();
+		return rand.nextInt(5);
 	}
 }
