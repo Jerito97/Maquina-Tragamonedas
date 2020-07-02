@@ -1,4 +1,4 @@
-package views;
+package view;
 
 import models.*;
 import java.awt.Color;
@@ -16,6 +16,7 @@ import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
 import controller.Controlador;
+import model.Symbol;
 
 public class VentanaJuego extends JFrame{
 	//temporales

@@ -6,6 +6,9 @@ import java.util.Random;
 
 import javax.swing.JOptionPane;
 
+import model.Jugador;
+import model.Symbol;
+
 public class Controlador {
 	private static Controlador instancia = null;
 	private Jugador jugador;
@@ -60,7 +63,7 @@ public class Controlador {
 		int[] arr = {valSymbol1, valSymbol2, valSymbol3};
 
 		//Despues verificamos si hay que hacer algo mas con esta funcion o no
-		chequear();
+		chequear(valSymbol1, valSymbol2, valSymbol3);
 
 		return arr;
 	}
@@ -68,7 +71,7 @@ public class Controlador {
 	public void chequear(int valSymbol1, int valSymbol2, int valSymbol3) {
 		if ((valSymbol1 == valSymbol2) && (valSymbol1 == valSymbol3) ) {
 			int total = (valSymbol1 + 1) * 10;
-			saldo =
+//			saldo =
 		} else if (valSymbol1 == valSymbol2 || valSymbol1 == valSymbol3 || valSymbol2 == valSymbol3) {
 
 		} else {

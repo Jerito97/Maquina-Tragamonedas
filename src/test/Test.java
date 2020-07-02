@@ -1,6 +1,6 @@
 package test;
 
-import views.VentanaSaldo;
+import view.VentanaSaldo;
 
 public class Test {
 	public static void main(String[] args) {
