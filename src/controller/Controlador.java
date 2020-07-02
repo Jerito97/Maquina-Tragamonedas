@@ -79,17 +79,17 @@ public class Controlador {
 			int reply = JOptionPane.showConfirmDialog(null, "GANASTE!\n Queres aceptarlo?", "", JOptionPane.YES_NO_OPTION);
 			income = income + crdtBet;
 			if (reply == JOptionPane.YES_OPTION) {
-				int total = (valSymbol1 + 1) * 10;
+				int wonAmnt = (valSymbol1 + 1) * 10;
 				
 		//HAY RECAUDACION DISPONIBLE
 				if (income>=wonAmnt) {
 	    			income = income - wonAmnt;
-		    		saldo = saldo + wonAmnt;
+	    			this.jugador.setSaldo(wonAmnt);
 		    		crdtBet = 5;
 		    		
 	    //NO HAY RECAUDACION DISPONIBLE	        			
 				}else {
-	    			saldo = saldo + income;
+					this.jugador.setSaldo(income);
 					income = 0;
 					crdtBet = 5;
 	                System.exit(0);
@@ -105,24 +105,23 @@ public class Controlador {
     		income = income + crdtBet;
     		if (reply2 == JOptionPane.YES_OPTION) {
     			int wonAmnt;
-    			if (box1 == box2 || box1 == box3) {
-    				wonAmnt = (box1 * crdtBet);
+    			if (valSymbol1 == valSymbol2 || valSymbol1 == valSymbol3) {
+    				wonAmnt = (valSymbol1 * crdtBet);
     			}else {
-    				wonAmnt = (box2 * crdtBet);
+    				wonAmnt = (valSymbol2 * crdtBet);
     			}
     			
     	//HAY RECAUDACION DISPONIBLE
-    			if (income>=wonAmnt) {
+    			if (income >= wonAmnt) {
 	    			income = income - wonAmnt;
-	        		saldo = saldo + wonAmnt;
+	        		this.jugador.setSaldo(wonAmnt);
 	        		crdtBet = 5;
 	        		
 	    //NO HAY RECAUDACION DISPONIBLE	        		
     			}else {
-    				saldo = saldo + income;
+    				this.jugador.setSaldo(income);
     				income = 0;
     				crdtBet = 5;
-	        		
 	                System.exit(0);
     			}
     			
