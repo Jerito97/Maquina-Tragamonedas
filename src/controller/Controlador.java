@@ -71,7 +71,7 @@ public class Controlador {
 	public void chequear(int valSymbol1, int valSymbol2, int valSymbol3) {
 		if ((valSymbol1 == valSymbol2) && (valSymbol1 == valSymbol3) ) {
 			int total = (valSymbol1 + 1) * 10;
-//			saldo =
+			saldo =
 		} else if (valSymbol1 == valSymbol2 || valSymbol1 == valSymbol3 || valSymbol2 == valSymbol3) {
 
 		} else {
