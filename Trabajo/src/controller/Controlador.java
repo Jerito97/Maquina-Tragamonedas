@@ -59,6 +59,9 @@ public class Controlador {
 		int valSymbol3 = numeroAzar();
 		int[] arr = {valSymbol1, valSymbol2, valSymbol3};
 
+		//Despues verificamos si hay que hacer algo mas con esta funcion o no
+		chequear();
+
 		return arr;
 	}
 
