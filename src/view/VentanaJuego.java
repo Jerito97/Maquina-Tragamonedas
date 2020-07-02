@@ -1,25 +1,21 @@
 package view;
 
-import models.*;
 import java.awt.Color;
 import java.awt.Container;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
 
 import javax.swing.BorderFactory;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
-import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
 import controller.Controlador;
-import model.Symbol;
 
 public class VentanaJuego extends JFrame{
-	//temporales
 
 	int income = 10000;
 	int crdtBet = 5;
@@ -27,11 +23,6 @@ public class VentanaJuego extends JFrame{
 	private Controlador controlador;
 
 	public JFrame frame;
-    public JPanel panel;
-    public JPanel panelButtons;
-    public JPanel panelDisplays;
-    public JPanel panelSpin;
-    public JPanel boxes;
 
     public JLabel creditsLeftLabel;		//CREDITOS RESTANTES APOSTADOR
     public JLabel creditsLeftDisplay;
@@ -39,24 +30,15 @@ public class VentanaJuego extends JFrame{
     public JLabel betAmntDisplay;
     public JLabel incomeLabel;			//RECAUDACION MAQUINA
     public JLabel incomeDisplay;
-    public static JLabel box1;			//CASILLA 1
-    public static JLabel box2;			//CASILLA 2
-    public static JLabel box3;			//CASILLA 3
+    public JLabel casilla1;
+    public JLabel casilla2;
+    public JLabel casilla3;
 
     public JButton addCoin;				//BOTON AGREGAR CREDITO PARA EL JUGADOR
     public JButton spin;				//BOTON GIRAR
     public JButton stop;				//BOTON FRENAR
-
-    Thread t1;
-    Thread t2;
-    Thread t3;
-
-    int spinClick = 0;					//PARA VERIFICAR EL APRETADO DE GIRAR
-    int stopClick = 0;					//PARA VERIFICAR EL APRETADO DE FRENAR
+    
     boolean isSpinning = false;
-
-    ArrayList<Symbol> imgsList = new ArrayList<Symbol>();
-    int valRan;
 
     public VentanaJuego (int saldo) {
     	configurar(saldo);
@@ -74,67 +56,67 @@ public class VentanaJuego extends JFrame{
 
     	betAmntLabel = new JLabel("Cant. a Apostar");
     	betAmntLabel.setBounds(44, 100, 76, 30);
-    	getContentPane().add(betAmntLabel);
+    	contenedor.add(betAmntLabel);
 
     	creditsLeftLabel = new JLabel("Creditos Restantes");
     	creditsLeftLabel.setBounds(29, 141, 100, 39);
-    	getContentPane().add(creditsLeftLabel);
+    	contenedor.add(creditsLeftLabel);
 
     	incomeLabel= new JLabel("Recaudacion");
     	incomeLabel.setBounds(44, 191, 62, 30);
-    	getContentPane().add(incomeLabel);
+    	contenedor.add(incomeLabel);
 
     	betAmntDisplay = new JLabel();
     	betAmntDisplay.setHorizontalAlignment(SwingConstants.CENTER);
     	betAmntDisplay.setText(String.valueOf(crdtBet));
     	betAmntDisplay.setBounds(130, 104, 48, 22);
     	betAmntDisplay.setBorder(BorderFactory.createLineBorder(Color.BLACK));
-    	getContentPane().add(betAmntDisplay);
+    	contenedor.add(betAmntDisplay);
 
     	creditsLeftDisplay = new JLabel();
     	creditsLeftDisplay.setHorizontalAlignment(SwingConstants.CENTER);
     	creditsLeftDisplay.setText(String.valueOf(controlador.getSaldo()));
     	creditsLeftDisplay.setBounds(130, 147, 48, 22);
     	creditsLeftDisplay.setBorder(BorderFactory.createLineBorder(Color.BLACK));
-    	getContentPane().add(creditsLeftDisplay);
+    	contenedor.add(creditsLeftDisplay);
 
     	incomeDisplay = new JLabel();
     	incomeDisplay.setHorizontalAlignment(SwingConstants.CENTER);
     	incomeDisplay.setText(String.valueOf(income));
     	incomeDisplay.setBounds(130, 195, 48, 22);
     	incomeDisplay.setBorder(BorderFactory.createLineBorder(Color.BLACK));
-    	getContentPane().add(incomeDisplay);
+    	contenedor.add(incomeDisplay);
 
-    	box1 = new JLabel();
-    	box1.setBounds(219, 11, 160, 250);
-    	box1.setBorder(BorderFactory.createLineBorder(Color.black));
-    	box1.setBackground(Color.white);
-    	getContentPane().add(box1);
+    	casilla1 = new JLabel();
+    	casilla1.setBounds(219, 11, 160, 250);
+    	casilla1.setBorder(BorderFactory.createLineBorder(Color.black));
+    	casilla1.setBackground(Color.white);
+    	contenedor.add(casilla1);
 
-    	box2 = new JLabel();
-    	box2.setBounds(389, 11, 160, 250);
-    	box2.setBorder(BorderFactory.createLineBorder(Color.black));
-    	box2.setBackground(Color.white);
-    	getContentPane().add(box2);
+    	casilla2 = new JLabel();
+    	casilla2.setBounds(389, 11, 160, 250);
+    	casilla2.setBorder(BorderFactory.createLineBorder(Color.black));
+    	casilla2.setBackground(Color.white);
+    	contenedor.add(casilla2);
 
-    	box3 = new JLabel();
-    	box3.setBounds(559, 11, 160, 250);
-    	box3.setBorder(BorderFactory.createLineBorder(Color.black));
-    	box3.setBackground(Color.white);
-    	getContentPane().add(box3);
+    	casilla3 = new JLabel();
+    	casilla3.setBounds(559, 11, 160, 250);
+    	casilla3.setBorder(BorderFactory.createLineBorder(Color.black));
+    	casilla3.setBackground(Color.white);
+    	contenedor.add(casilla3);
 
 
     	addCoin = new JButton("+5 Creditos");
     	addCoin.setBounds(250, 300, 100, 23);
-    	getContentPane().add(addCoin);
+    	contenedor.add(addCoin);
 
     	spin = new JButton("GIRAR");
     	spin.setBounds(360, 289, 100, 45);
-    	getContentPane().add(spin);
+    	contenedor.add(spin);
 
     	stop = new JButton("FRENAR");
     	stop.setBounds(470, 289, 100, 45);
-    	getContentPane().add(stop);
+    	contenedor.add(stop);
 
     }
 
@@ -142,45 +124,71 @@ public class VentanaJuego extends JFrame{
     	addCoin.addActionListener(new ActionListener() {
     		@Override
     		public void actionPerformed(ActionEvent e) {
-
+    			controlador.agregarCreditos(5);
+    			creditsLeftDisplay.setText(String.valueOf(controlador.getSaldo()));
     		}
     	});
 
     	spin.addActionListener(new ActionListener() {
     		@Override
     		public void actionPerformed(ActionEvent e) {
-
-    			//TODO: Cambiar las variables spin por el boolean isSpinning!
-
-    			controlador.girar();
-    			if (spinClick == 0 && controlador.getSaldo()>=5) {
-					stopClick = 0;
-					spinClick++;
-					creditsLeftDisplay.setText(String.valueOf(controlador.getSaldo()));
-				} else if (controlador.getSaldo()<5){
-					JOptionPane.showMessageDialog(frame, "ERROR: NO TENES CREDITOS SUFICIENTES PARA APOSTAR");
-				} else {
-					JOptionPane.showMessageDialog(frame, "SOLO GIRAR UNA VEZ POR TURNO");
-				}
+    			
+    			if (isSpinning == true) {
+    				JOptionPane.showMessageDialog(frame, "Estas girando! Apreta en Frenar para ver el resultado.");
+    			} else {
+    				
+    				if (controlador.getSaldo() < 5) {
+    					JOptionPane.showMessageDialog(frame, "ERROR: NO TENES CREDITOS SUFICIENTES PARA APOSTAR");
+    				} else {
+    					isSpinning = true;
+            			setImagenInicial();
+            			controlador.girar();
+            			int texto = controlador.getPozoAcumulado();
+            			incomeDisplay.setText(String.valueOf(texto));
+            			creditsLeftDisplay.setText(String.valueOf(controlador.getSaldo()));
+    				}
+    			}
     		}
     	});
 
     	stop.addActionListener(new ActionListener() {
     		@Override
     		public void actionPerformed(ActionEvent e) {
-    			t1.interrupt();
-				t2.interrupt();
-				t3.interrupt();
-					//TODO: Aca se frena los threads.
-
-    			int[] symbolImages = controlador.frenar();
-
-					//TODO: Aca se actualizan las imagenes correspondientes en base al array de arriba
+    			if (isSpinning == true) {
+    				int[] symbolIDs = controlador.frenar();
+        			actualizarImagenSymbol(symbolIDs[0], symbolIDs[1], symbolIDs[2]);
+        			controlador.chequear(symbolIDs[0], symbolIDs[1], symbolIDs[2]);
+        			
+        			int texto = controlador.getPozoAcumulado();
+        			incomeDisplay.setText(String.valueOf(texto));
+        			
+        			int textoSaldo = controlador.getSaldo();
+        			creditsLeftDisplay.setText(String.valueOf(textoSaldo));
+        			isSpinning = false;
+    			}
     		}
     	});
     }
+    
+    private void setImagenInicial() {
+    	ImageIcon imgThisImg1 = new ImageIcon("C:\\Users\\ruano\\Documents\\GitHub\\Maquina-Tragamonedas\\src\\images\\spinAnim1.gif");
+    	this.casilla1.setIcon(imgThisImg1);
+    	
+    	ImageIcon imgThisImg2 = new ImageIcon("C:\\Users\\ruano\\Documents\\GitHub\\Maquina-Tragamonedas\\src\\images\\spinAnim2.gif");
+    	this.casilla2.setIcon(imgThisImg2);
+    	
+    	ImageIcon imgThisImg3 = new ImageIcon("C:\\Users\\ruano\\Documents\\GitHub\\Maquina-Tragamonedas\\src\\images\\spinAnim3.gif");
+    	this.casilla3.setIcon(imgThisImg3);
+    }
 
-    private void actualizarImagenSymbol() {
-
+    private void actualizarImagenSymbol(int valSymbol1, int valSymbol2, int valSymbol3) {
+    	ImageIcon cas1 = new ImageIcon(controlador.obtenerImagen(valSymbol1));
+    	this.casilla1.setIcon(cas1);
+    	
+    	ImageIcon cas2 = new ImageIcon(controlador.obtenerImagen(valSymbol2));
+    	this.casilla2.setIcon(cas2);
+    	
+    	ImageIcon cas3 = new ImageIcon(controlador.obtenerImagen(valSymbol3));
+    	this.casilla3.setIcon(cas3);
     }
 }
