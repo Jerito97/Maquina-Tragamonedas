@@ -13,12 +13,11 @@ import model.Symbol;
 
 public class Controlador {
 	private static Controlador instancia = null;
-	
+
 	private Jugador jugador;
 	private boolean estaGirando = false;
 
 	private int pozoAcumulado = 10000;
-
 
 	private Symbol bell;
 	private Symbol cherry;
@@ -26,7 +25,7 @@ public class Controlador {
 	private Symbol plum;
 	private Symbol redSeven;
 	private Symbol watermelon;
-	
+
 	ArrayList<Symbol> simbolosArray = new ArrayList<Symbol>();
 
 	private Controlador(int saldoIngresado) {
@@ -49,7 +48,7 @@ public class Controlador {
 		this.plum = new Symbol(3, "C:\\Users\\Jero\\Desktop\\UADE\\IOO\\GitHub\\Maquina-Tragamonedas\\src\\images\\plum.png");
 		this.redSeven = new Symbol(4, "C:\\Users\\Jero\\Desktop\\UADE\\IOO\\GitHub\\Maquina-Tragamonedas\\src\\images\\redseven.png");
 		this.watermelon = new Symbol(5, "C:\\Users\\Jero\\Desktop\\UADE\\IOO\\GitHub\\Maquina-Tragamonedas\\src\\images\\watermelon.png");
-		
+
 		this.simbolosArray.add(this.bell);
 		this.simbolosArray.add(this.cherry);
 		this.simbolosArray.add(this.lemon);
@@ -72,15 +71,10 @@ public class Controlador {
 
 	public int[] frenar() {
 		estaGirando = false;
-
 		int valSymbol1 = numeroAzar();
 		int valSymbol2 = numeroAzar();
 		int valSymbol3 = numeroAzar();
 		int[] arr = {valSymbol1, valSymbol2, valSymbol3};
-
-		//Despues verificamos si hay que hacer algo mas con esta funcion o no
-//		chequear(valSymbol1, valSymbol2, valSymbol3);
-
 		return arr;
 	}
 
@@ -93,11 +87,11 @@ public class Controlador {
 				int wonAmnt = (valSymbol1 + 1) * 50;
 
 				if (pozoAcumulado>=wonAmnt) {
-					//HAY RECAUDACION DISPONIBLE
+					//Se paga todo el premio
 					pozoAcumulado = pozoAcumulado - wonAmnt;
-					this.jugador.setSaldo(wonAmnt);  			
+					this.jugador.setSaldo(wonAmnt);
 				} else {
-					//NO HAY RECAUDACION DISPONIBLE
+					//El pozo acumulado no es suficiente para pagar toda la ganancia
 					this.jugador.setSaldo(pozoAcumulado);
 					pozoAcumulado = 0;
 					System.exit(0);
@@ -114,18 +108,18 @@ public class Controlador {
 				}else {
 					wonAmnt = (valSymbol2 + 1) * 5;
 				}
-				
+
 				if (pozoAcumulado >= wonAmnt) {
-					//HAY RECAUDACION DISPONIBLE
+					//Se paga todo el premio
 					pozoAcumulado = pozoAcumulado - wonAmnt;
-					this.jugador.setSaldo(wonAmnt);       		
+					this.jugador.setSaldo(wonAmnt);
 				} else {
-					//NO HAY RECAUDACION DISPONIBLE
+					//El pozo acumulado no es suficiente para pagar toda la ganancia
 					this.jugador.setSaldo(pozoAcumulado);
 					pozoAcumulado = 0;
 					System.exit(0);
 				}
-			} 		
+			}
 		}
 	}
 
@@ -142,7 +136,7 @@ public class Controlador {
 		}
 		return path;
 	}
-	
+
 	public void agregarCreditos(int saldoAgregado) {
 		jugador.setSaldo(saldoAgregado);
 	}

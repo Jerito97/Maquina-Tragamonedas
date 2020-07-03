@@ -28,10 +28,13 @@ public class VentanaJuego extends JFrame{
 
     public JLabel creditsLeftLabel;		//CREDITOS RESTANTES APOSTADOR
     public JLabel creditsLeftDisplay;
+
     public JLabel betAmntLabel;			//CANTIDAD CREDITOS A APOSTAR
     public JLabel betAmntDisplay;
+
     public JLabel incomeLabel;			//RECAUDACION MAQUINA
     public JLabel incomeDisplay;
+
     public JLabel casilla1;
     public JLabel casilla2;
     public JLabel casilla3;
@@ -40,7 +43,7 @@ public class VentanaJuego extends JFrame{
     public JButton spin;				//BOTON GIRAR
     public JButton stop;				//BOTON FRENAR
     public JButton retirar;
-    
+
     boolean isSpinning = false;
 
     public VentanaJuego (int saldo) {
@@ -56,7 +59,7 @@ public class VentanaJuego extends JFrame{
     	this.setSize(800, 400);
     	this.setResizable(false);
     	this.setBackground(Color.white);
-    	
+
     	Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
     	this.setLocation(dim.width/2-this.getSize().width/2, dim.height/2-this.getSize().height/2);
 
@@ -129,7 +132,7 @@ public class VentanaJuego extends JFrame{
     	stop = new JButton("FRENAR");
     	stop.setBounds(470, 289, 100, 45);
     	contenedor.add(stop);
-    	
+
     	retirar = new JButton("Retiar credito");
     	retirar.setBounds(580, 300, 120, 23);
     	contenedor.add(retirar);
@@ -148,13 +151,13 @@ public class VentanaJuego extends JFrame{
     	spin.addActionListener(new ActionListener() {
     		@Override
     		public void actionPerformed(ActionEvent e) {
-    			
+
     			if (isSpinning == true) {
     				JOptionPane.showMessageDialog(frame, "Estas girando! Apreta en Frenar para ver el resultado.");
     			} else {
-    				
+
     				if (controlador.getSaldo() < 5) {
-    					JOptionPane.showMessageDialog(frame, "ERROR: NO TENES CREDITOS SUFICIENTES PARA APOSTAR");
+    					JOptionPane.showMessageDialog(frame, "No contas con los creditos suficientes para jugar! Por favor agrega mas creditos.");
     				} else {
     					isSpinning = true;
             			setImagenInicial();
@@ -174,17 +177,17 @@ public class VentanaJuego extends JFrame{
     				int[] symbolIDs = controlador.frenar();
         			actualizarImagenSymbol(symbolIDs[0], symbolIDs[1], symbolIDs[2]);
         			controlador.chequear(symbolIDs[0], symbolIDs[1], symbolIDs[2]);
-        			
+
         			int texto = controlador.getPozoAcumulado();
         			incomeDisplay.setText(String.valueOf(texto));
-        			
+
         			int textoSaldo = controlador.getSaldo();
         			creditsLeftDisplay.setText(String.valueOf(textoSaldo));
         			isSpinning = false;
     			}
     		}
     	});
-    	
+
     	retirar.addActionListener(new ActionListener() {
     		@Override
     		public void actionPerformed(ActionEvent e) {
@@ -194,14 +197,14 @@ public class VentanaJuego extends JFrame{
     		}
     	});
     }
-    
+
     private void setImagenInicial() {
     	ImageIcon imgThisImg1 = new ImageIcon("C:\\Users\\Jero\\Desktop\\UADE\\IOO\\GitHub\\Maquina-Tragamonedas\\src\\images\\spinAnim1.gif");
     	this.casilla1.setIcon(imgThisImg1);
-    	
+
     	ImageIcon imgThisImg2 = new ImageIcon("C:\\Users\\Jero\\Desktop\\UADE\\IOO\\GitHub\\Maquina-Tragamonedas\\src\\images\\spinAnim2.gif");
     	this.casilla2.setIcon(imgThisImg2);
-    	
+
     	ImageIcon imgThisImg3 = new ImageIcon("C:\\Users\\Jero\\Desktop\\UADE\\IOO\\GitHub\\Maquina-Tragamonedas\\src\\images\\spinAnim3.gif");
     	this.casilla3.setIcon(imgThisImg3);
     }
@@ -209,10 +212,10 @@ public class VentanaJuego extends JFrame{
     private void actualizarImagenSymbol(int valSymbol1, int valSymbol2, int valSymbol3) {
     	ImageIcon cas1 = new ImageIcon(controlador.obtenerImagen(valSymbol1));
     	this.casilla1.setIcon(cas1);
-    	
+
     	ImageIcon cas2 = new ImageIcon(controlador.obtenerImagen(valSymbol2));
     	this.casilla2.setIcon(cas2);
-    	
+
     	ImageIcon cas3 = new ImageIcon(controlador.obtenerImagen(valSymbol3));
     	this.casilla3.setIcon(cas3);
     }
