@@ -43,12 +43,12 @@ public class Controlador {
 	private void inicializarObjetos(int saldoIngresado) {
 		this.jugador = new Jugador(saldoIngresado);
 
-		this.bell = new Symbol(0, "C:\\Users\\ruano\\Documents\\GitHub\\Maquina-Tragamonedas\\src\\images\\bell.png");
-		this.cherry = new Symbol(1, "C:\\Users\\ruano\\Documents\\GitHub\\Maquina-Tragamonedas\\src\\images\\cherry.png");
-		this.lemon = new Symbol(2, "C:\\Users\\ruano\\Documents\\GitHub\\Maquina-Tragamonedas\\src\\images\\lemon.png");
-		this.plum = new Symbol(3, "C:\\Users\\ruano\\Documents\\GitHub\\Maquina-Tragamonedas\\src\\images\\plum.png");
-		this.redSeven = new Symbol(4, "C:\\Users\\ruano\\Documents\\GitHub\\Maquina-Tragamonedas\\src\\images\\redseven.png");
-		this.watermelon = new Symbol(5, "C:\\Users\\ruano\\Documents\\GitHub\\Maquina-Tragamonedas\\src\\images\\watermelon.png");
+		this.bell = new Symbol(0, "C:\\Users\\Jero\\Desktop\\UADE\\IOO\\GitHub\\Maquina-Tragamonedas\\src\\images\\bell.png");
+		this.cherry = new Symbol(1, "C:\\Users\\Jero\\Desktop\\UADE\\IOO\\GitHub\\Maquina-Tragamonedas\\src\\images\\cherry.png");
+		this.lemon = new Symbol(2, "C:\\Users\\Jero\\Desktop\\UADE\\IOO\\GitHub\\Maquina-Tragamonedas\\src\\images\\lemon.png");
+		this.plum = new Symbol(3, "C:\\Users\\Jero\\Desktop\\UADE\\IOO\\GitHub\\Maquina-Tragamonedas\\src\\images\\plum.png");
+		this.redSeven = new Symbol(4, "C:\\Users\\Jero\\Desktop\\UADE\\IOO\\GitHub\\Maquina-Tragamonedas\\src\\images\\redseven.png");
+		this.watermelon = new Symbol(5, "C:\\Users\\Jero\\Desktop\\UADE\\IOO\\GitHub\\Maquina-Tragamonedas\\src\\images\\watermelon.png");
 		
 		this.simbolosArray.add(this.bell);
 		this.simbolosArray.add(this.cherry);

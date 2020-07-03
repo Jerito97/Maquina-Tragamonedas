@@ -1,6 +1,8 @@
 package view;
 
 import java.awt.Container;
+import java.awt.Dimension;
+import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -26,12 +28,15 @@ public class VentanaSaldo extends JFrame {
     	this.setSize(300, 150);
     	this.setResizable(false);
 
-    	labelSaldo = new JLabel("Ingrese saldo");
+    	Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
+    	this.setLocation(dim.width/2-this.getSize().width/2, dim.height/2-this.getSize().height/2);
+    	
+    	labelSaldo = new JLabel("Ingrese saldo:");
     	botonOk = new JButton("Ok");
     	textSaldo = new JTextField();
 
-    	labelSaldo.setBounds(43, 20, 100, 30);
-    	botonOk.setBounds(120, 80, 50, 30);
+    	labelSaldo.setBounds(47, 20, 100, 30);
+    	botonOk.setBounds(120, 70, 50, 30);
     	textSaldo.setBounds(147, 20, 100, 30);
 
     	contenedor.add(labelSaldo);

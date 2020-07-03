@@ -2,6 +2,8 @@ package view;
 
 import java.awt.Color;
 import java.awt.Container;
+import java.awt.Dimension;
+import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -37,6 +39,7 @@ public class VentanaJuego extends JFrame{
     public JButton addCoin;				//BOTON AGREGAR CREDITO PARA EL JUGADOR
     public JButton spin;				//BOTON GIRAR
     public JButton stop;				//BOTON FRENAR
+    public JButton retirar;
     
     boolean isSpinning = false;
 
@@ -53,6 +56,9 @@ public class VentanaJuego extends JFrame{
     	this.setSize(800, 400);
     	this.setResizable(false);
     	this.setBackground(Color.white);
+    	
+    	Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
+    	this.setLocation(dim.width/2-this.getSize().width/2, dim.height/2-this.getSize().height/2);
 
     	betAmntLabel = new JLabel("Cant. a Apostar");
     	betAmntLabel.setBounds(44, 100, 76, 30);
@@ -91,18 +97,24 @@ public class VentanaJuego extends JFrame{
     	casilla1.setBounds(219, 11, 160, 250);
     	casilla1.setBorder(BorderFactory.createLineBorder(Color.black));
     	casilla1.setBackground(Color.white);
+    	ImageIcon imgThisImg1 = new ImageIcon("C:\\Users\\Jero\\Desktop\\UADE\\IOO\\GitHub\\Maquina-Tragamonedas\\src\\images\\bell.png");
+    	this.casilla1.setIcon(imgThisImg1);
     	contenedor.add(casilla1);
 
     	casilla2 = new JLabel();
     	casilla2.setBounds(389, 11, 160, 250);
     	casilla2.setBorder(BorderFactory.createLineBorder(Color.black));
     	casilla2.setBackground(Color.white);
+    	ImageIcon imgThisImg2 = new ImageIcon("C:\\Users\\Jero\\Desktop\\UADE\\IOO\\GitHub\\Maquina-Tragamonedas\\src\\images\\redseven.png");
+    	this.casilla2.setIcon(imgThisImg2);
     	contenedor.add(casilla2);
 
     	casilla3 = new JLabel();
     	casilla3.setBounds(559, 11, 160, 250);
     	casilla3.setBorder(BorderFactory.createLineBorder(Color.black));
     	casilla3.setBackground(Color.white);
+    	ImageIcon imgThisImg3 = new ImageIcon("C:\\Users\\Jero\\Desktop\\UADE\\IOO\\GitHub\\Maquina-Tragamonedas\\src\\images\\lemon.png");
+    	this.casilla3.setIcon(imgThisImg3);
     	contenedor.add(casilla3);
 
 
@@ -117,6 +129,10 @@ public class VentanaJuego extends JFrame{
     	stop = new JButton("FRENAR");
     	stop.setBounds(470, 289, 100, 45);
     	contenedor.add(stop);
+    	
+    	retirar = new JButton("Retiar credito");
+    	retirar.setBounds(580, 300, 120, 23);
+    	contenedor.add(retirar);
 
     }
 
@@ -168,16 +184,25 @@ public class VentanaJuego extends JFrame{
     			}
     		}
     	});
+    	
+    	retirar.addActionListener(new ActionListener() {
+    		@Override
+    		public void actionPerformed(ActionEvent e) {
+    			creditsLeftDisplay.setText(String.valueOf(0));
+    			JOptionPane.showMessageDialog(frame, "Te fuiste con " + controlador.getSaldo() + " creditos");
+    			System.exit(0);
+    		}
+    	});
     }
     
     private void setImagenInicial() {
-    	ImageIcon imgThisImg1 = new ImageIcon("C:\\Users\\ruano\\Documents\\GitHub\\Maquina-Tragamonedas\\src\\images\\spinAnim1.gif");
+    	ImageIcon imgThisImg1 = new ImageIcon("C:\\Users\\Jero\\Desktop\\UADE\\IOO\\GitHub\\Maquina-Tragamonedas\\src\\images\\spinAnim1.gif");
     	this.casilla1.setIcon(imgThisImg1);
     	
-    	ImageIcon imgThisImg2 = new ImageIcon("C:\\Users\\ruano\\Documents\\GitHub\\Maquina-Tragamonedas\\src\\images\\spinAnim2.gif");
+    	ImageIcon imgThisImg2 = new ImageIcon("C:\\Users\\Jero\\Desktop\\UADE\\IOO\\GitHub\\Maquina-Tragamonedas\\src\\images\\spinAnim2.gif");
     	this.casilla2.setIcon(imgThisImg2);
     	
-    	ImageIcon imgThisImg3 = new ImageIcon("C:\\Users\\ruano\\Documents\\GitHub\\Maquina-Tragamonedas\\src\\images\\spinAnim3.gif");
+    	ImageIcon imgThisImg3 = new ImageIcon("C:\\Users\\Jero\\Desktop\\UADE\\IOO\\GitHub\\Maquina-Tragamonedas\\src\\images\\spinAnim3.gif");
     	this.casilla3.setIcon(imgThisImg3);
     }
 
