@@ -194,7 +194,9 @@ public class VentanaJuego extends JFrame{
     		public void actionPerformed(ActionEvent e) {
     			creditsLeftDisplay.setText(String.valueOf(0));
     			JOptionPane.showMessageDialog(frame, "Te fuiste con " + controlador.getSaldo() + " creditos");
-    			System.exit(0);
+    			VentanaInicio inicio = new VentanaInicio();
+    			inicio.setVisible(true);
+    			VentanaJuego.this.setVisible(false);
     		}
     	});
     }

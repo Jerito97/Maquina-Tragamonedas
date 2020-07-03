@@ -121,7 +121,7 @@ public class Controlador {
 			}
 		}
 	}
-
+	
 	public int getPozoAcumulado() {
 		return pozoAcumulado;
 	}
