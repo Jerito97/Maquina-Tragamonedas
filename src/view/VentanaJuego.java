@@ -56,6 +56,7 @@ public class VentanaJuego extends JFrame{
 
     	Container contenedor = this.getContentPane();
     	contenedor.setLayout(null);
+    	this.setTitle("Maquina Tragamonedas");
     	this.setSize(800, 400);
     	this.setResizable(false);
     	this.setBackground(Color.white);

@@ -1,10 +1,10 @@
 package test;
 
-import view.VentanaSaldo;
+import view.VentanaInicio;
 
 public class Test {
 	public static void main(String[] args) {
-		VentanaSaldo principal = new VentanaSaldo();
+		VentanaInicio principal = new VentanaInicio();
 		principal.setVisible(true);
 	}
 	
