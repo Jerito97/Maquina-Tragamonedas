@@ -34,6 +34,8 @@ public class Controlador {
 	public static Controlador miInstancia(int saldoIngresado) {
 		if (instancia == null) {
 			instancia = new Controlador(saldoIngresado);
+		}else {
+			instancia.jugador.setSaldoInicial(saldoIngresado);
 		}
 		return instancia;
 	}

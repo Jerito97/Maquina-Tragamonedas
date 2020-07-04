@@ -14,4 +14,8 @@ public class Jugador {
     public void setSaldo(int saldoAgregado) {
         this.saldo =  this.saldo + saldoAgregado;
     }
+    
+    public void setSaldoInicial(int saldoInicial){
+    	this.saldo = saldoInicial;
+    }
 }

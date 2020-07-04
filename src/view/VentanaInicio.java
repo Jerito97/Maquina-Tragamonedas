@@ -1,5 +1,6 @@
 package view;
 
+import controller.*;
 import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.Toolkit;
@@ -42,9 +43,9 @@ public class VentanaInicio extends JFrame {
 		entrar.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				VentanaSaldo saldo = new VentanaSaldo();
-				saldo.setVisible(true);
-				VentanaInicio.this.setVisible(false);
+					VentanaSaldo saldo = new VentanaSaldo();
+					saldo.setVisible(true);
+					VentanaInicio.this.setVisible(false);
 			}
 		});
 		
