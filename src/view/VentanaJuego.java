@@ -18,10 +18,6 @@ import javax.swing.SwingConstants;
 import controller.Controlador;
 
 public class VentanaJuego extends JFrame{
-
-	int income = 10000;
-	int crdtBet = 5;
-
 	private Controlador controlador;
 
 	public JFrame frame;
@@ -78,7 +74,7 @@ public class VentanaJuego extends JFrame{
 
     	betAmntDisplay = new JLabel();
     	betAmntDisplay.setHorizontalAlignment(SwingConstants.CENTER);
-    	betAmntDisplay.setText(String.valueOf(crdtBet));
+    	betAmntDisplay.setText(String.valueOf(5));
     	betAmntDisplay.setBounds(130, 104, 48, 22);
     	betAmntDisplay.setBorder(BorderFactory.createLineBorder(Color.BLACK));
     	contenedor.add(betAmntDisplay);
@@ -92,7 +88,7 @@ public class VentanaJuego extends JFrame{
 
     	incomeDisplay = new JLabel();
     	incomeDisplay.setHorizontalAlignment(SwingConstants.CENTER);
-    	incomeDisplay.setText(String.valueOf(income));
+    	incomeDisplay.setText(String.valueOf(controlador.getPozoAcumulado()));
     	incomeDisplay.setBounds(130, 195, 48, 22);
     	incomeDisplay.setBorder(BorderFactory.createLineBorder(Color.BLACK));
     	contenedor.add(incomeDisplay);
