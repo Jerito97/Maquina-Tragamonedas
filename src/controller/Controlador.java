@@ -9,6 +9,7 @@ import javax.swing.JOptionPane;
 
 import model.Jugador;
 import model.Symbol;
+import modelView.ModelView;
 
 public class Controlador {
 	private static Controlador instancia = null;
@@ -26,6 +27,7 @@ public class Controlador {
 	private Symbol watermelon;
 
 	ArrayList<Symbol> simbolosArray = new ArrayList<Symbol>();
+	ArrayList<Premio> premiosArray = new ArrayList<Premio>();
 
 	private Controlador(int saldoIngresado) {
 		inicializarObjetos(saldoIngresado);
@@ -43,12 +45,12 @@ public class Controlador {
 	private void inicializarObjetos(int saldoIngresado) {
 		this.jugador = new Jugador(saldoIngresado);
 
-		this.bell = new Symbol(0, "C:\\Users\\Jero\\Desktop\\UADE\\IOO\\GitHub\\Maquina-Tragamonedas\\src\\images\\bell.png");
-		this.cherry = new Symbol(1, "C:\\Users\\Jero\\Desktop\\UADE\\IOO\\GitHub\\Maquina-Tragamonedas\\src\\images\\cherry.png");
-		this.lemon = new Symbol(2, "C:\\Users\\Jero\\Desktop\\UADE\\IOO\\GitHub\\Maquina-Tragamonedas\\src\\images\\lemon.png");
-		this.plum = new Symbol(3, "C:\\Users\\Jero\\Desktop\\UADE\\IOO\\GitHub\\Maquina-Tragamonedas\\src\\images\\plum.png");
-		this.redSeven = new Symbol(4, "C:\\Users\\Jero\\Desktop\\UADE\\IOO\\GitHub\\Maquina-Tragamonedas\\src\\images\\redseven.png");
-		this.watermelon = new Symbol(5, "C:\\Users\\Jero\\Desktop\\UADE\\IOO\\GitHub\\Maquina-Tragamonedas\\src\\images\\watermelon.png");
+		this.bell = new Symbol("campana", 0, "C:\\Users\\Jero\\Desktop\\UADE\\IOO\\GitHub\\Maquina-Tragamonedas\\src\\images\\bell.png");
+		this.cherry = new Symbol("cherry", 1, "C:\\Users\\Jero\\Desktop\\UADE\\IOO\\GitHub\\Maquina-Tragamonedas\\src\\images\\cherry.png");
+		this.lemon = new Symbol("limon", 2, "C:\\Users\\Jero\\Desktop\\UADE\\IOO\\GitHub\\Maquina-Tragamonedas\\src\\images\\lemon.png");
+		this.plum = new Symbol("ciruela", 3, "C:\\Users\\Jero\\Desktop\\UADE\\IOO\\GitHub\\Maquina-Tragamonedas\\src\\images\\plum.png");
+		this.redSeven = new Symbol("siete rojo", 4, "C:\\Users\\Jero\\Desktop\\UADE\\IOO\\GitHub\\Maquina-Tragamonedas\\src\\images\\redseven.png");
+		this.watermelon = new Symbol("melon", 5, "C:\\Users\\Jero\\Desktop\\UADE\\IOO\\GitHub\\Maquina-Tragamonedas\\src\\images\\watermelon.png");
 
 		this.simbolosArray.add(this.bell);
 		this.simbolosArray.add(this.cherry);
@@ -147,5 +149,39 @@ public class Controlador {
 		return rand.nextInt(5);
 	}
 	
+	public void addPremio(int monto, int valor1, int valor2, int valor3) {
+		Premio premio = new Premio(getSymbol(valor1), getSymbol(valor2), getSymbol(valor3), monto);
+		premiosArray.add(premio);
+	}
+	
+	private Symbol getSymbol(int id) {
+		Symbol simbolo = null;
+		for (int i = 0; i < this.simbolosArray.size(); ++i) {
+			if (id == this.simbolosArray.get(i).getValue()) {
+				simbolo = this.simbolosArray.get(i);
+			}
+		}
+		if (simbolo == null) {
+			simbolo = new Symbol("N/A", -1, "N/A");
+		}
+		return simbolo;
+	}
+	
+	public void eliminarPremio(int posicion) {
+		premiosArray.remove(posicion);
+	}
+	
+	public ArrayList<ModelView> getPremios() {
+		ArrayList<ModelView> viewArray = new ArrayList<ModelView>();
+		for (int i = 0; i < this.premiosArray.size(); ++i) {
+			String uno = this.premiosArray.get(i).nombre1();
+			String dos = this.premiosArray.get(i).nombre2();
+			String tres = this.premiosArray.get(i).nombre3();
+			int monto = this.premiosArray.get(i).getMonto();
+			ModelView view = new ModelView(monto, uno, dos, tres);
+			viewArray.add(view);
+		}
+		return viewArray;
+	}
 	
 }
