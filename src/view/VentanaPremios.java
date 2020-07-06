@@ -1,6 +1,5 @@
 package view;
 
-import java.awt.Color;
 import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.Toolkit;
@@ -14,6 +13,7 @@ import javax.swing.JTextField;
 import javax.swing.JLabel;
 import javax.swing.JSeparator;
 import java.awt.Font;
+import javax.swing.SwingConstants;
 
 public class VentanaPremios extends JFrame {
 	JButton atras;
@@ -29,10 +29,6 @@ public class VentanaPremios extends JFrame {
 	JLabel fruta1Eliminar;
 	JLabel fruta2Eliminar;
 	JLabel fruta3Eliminar;
-	
-	//Agregar Premios
-	JLabel nombreLabel;
-	JTextField nombreDisplay;
 	JLabel montoAgregarLabel;
 	JTextField montoDisplay;
 	JComboBox fruta1;
@@ -42,8 +38,9 @@ public class VentanaPremios extends JFrame {
 	JComboBox fruta3;
 	JLabel fruta3AgregarLabel;
 	
-	String[] premios = {"Campanas", "Limones"};
-	String[] frutas = {"-", "Campana", "Cherry", "Limon", "Ciruela", "Siete Rojo", "Melon"};
+	String[] premios = {"Campana - Limon - Limon", "Limon - Limon - Limon"};
+	String[] frutas = {"Campana", "Cherry", "Limon", "Ciruela", "Siete Rojo", "Melon", "-"};
+	
 	
 	public VentanaPremios () {
     	configurar();
@@ -85,49 +82,37 @@ public class VentanaPremios extends JFrame {
     	listaPremios.setBounds(20, 35, 70, 25);
     	
     	lista = new JComboBox(premios);
-    	lista.setBounds(15, 55, 100, 25);
+    	lista.setBounds(15, 55, 260, 25);
     	
     	montoEliminar = new JLabel("Monto: ");
-    	montoEliminar.setBounds(180, 91, 70, 25);
-    	
-    	fruta1Eliminar = new JLabel("Fruta");
-    	fruta1Eliminar.setBounds(15, 91, 70, 25);
-    	
-    	fruta2Eliminar = new JLabel("Fruta");
-    	fruta2Eliminar.setBounds(59, 91, 70, 25);
-    	
-    	fruta3Eliminar = new JLabel("Fruta");
-    	fruta3Eliminar.setBounds(105, 91, 70, 25);
-    	
-    	
-    	nombreLabel = new JLabel("Nombre");
-    	nombreLabel.setBounds(70, 215, 48, 14);
-    	
-    	nombreDisplay = new JTextField();
-    	nombreDisplay.setBounds(59, 230, 70, 20);
-    	nombreDisplay.setColumns(10);
+    	montoEliminar.setBounds(15, 91, 70, 25);
     	
     	montoAgregarLabel = new JLabel("Monto");
-    	montoAgregarLabel.setBounds(175, 215, 48, 14);
+    	montoAgregarLabel.setHorizontalAlignment(SwingConstants.CENTER);
+    	montoAgregarLabel.setBounds(105, 220, 80, 14);
     	
     	montoDisplay = new JTextField();
-    	montoDisplay.setBounds(160, 230, 70, 20);
+    	montoDisplay.setHorizontalAlignment(SwingConstants.CENTER);
+    	montoDisplay.setBounds(105, 233, 80, 20);
     	montoDisplay.setColumns(10);
     	
     	fruta1AgregarLabel = new JLabel("Fruta 1");
-    	fruta1AgregarLabel.setBounds(25, 250, 70, 25);
+    	fruta1AgregarLabel.setHorizontalAlignment(SwingConstants.CENTER);
+    	fruta1AgregarLabel.setBounds(15, 250, 80, 25);
     	
     	fruta1 = new JComboBox(frutas);
     	fruta1.setBounds(15, 270, 80, 25);
     	
     	fruta2AgregarLabel = new JLabel("Fruta 2");
-    	fruta2AgregarLabel.setBounds(115, 250, 70, 25);
+    	fruta2AgregarLabel.setHorizontalAlignment(SwingConstants.CENTER);
+    	fruta2AgregarLabel.setBounds(105, 250, 80, 25);
     	
     	fruta2 = new JComboBox(frutas);
     	fruta2.setBounds(105, 270, 80, 25);
     	
     	fruta3AgregarLabel = new JLabel("Fruta 3");
-    	fruta3AgregarLabel.setBounds(205, 250, 70, 25);
+    	fruta3AgregarLabel.setHorizontalAlignment(SwingConstants.CENTER);
+    	fruta3AgregarLabel.setBounds(195, 250, 80, 25);
     	
     	fruta3 = new JComboBox(frutas);
     	fruta3.setBounds(195, 270, 80, 25);
@@ -139,8 +124,6 @@ public class VentanaPremios extends JFrame {
     	contenedor.add(eliminar);
     	contenedor.add(listaPremios);
     	contenedor.add(lista);
-    	contenedor.add(nombreLabel);
-    	contenedor.add(nombreDisplay);
     	contenedor.add(montoAgregarLabel);
     	contenedor.add(montoDisplay);
     	contenedor.add(fruta1AgregarLabel);
@@ -150,9 +133,9 @@ public class VentanaPremios extends JFrame {
     	contenedor.add(fruta3AgregarLabel);
     	contenedor.add(fruta3);
     	contenedor.add(montoEliminar);
-    	contenedor.add(fruta1Eliminar);
-    	contenedor.add(fruta2Eliminar);
-    	contenedor.add(fruta3Eliminar);
+    	//contenedor.add(fruta1Eliminar);
+    	//contenedor.add(fruta2Eliminar);
+    	//contenedor.add(fruta3Eliminar);
 	}
 
 	private void eventos() {
