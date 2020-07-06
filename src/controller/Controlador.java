@@ -146,4 +146,6 @@ public class Controlador {
 		Random rand = new Random();
 		return rand.nextInt(5);
 	}
+	
+	
 }
