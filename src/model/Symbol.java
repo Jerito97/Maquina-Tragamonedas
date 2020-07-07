@@ -2,9 +2,9 @@ package model;
 
 public class Symbol {
 
-	int value;
-	String nombre;
-	String imgPath;
+	private int value;
+	private String nombre;
+	private String imgPath;
 
 	public Symbol(String nombre, int id, String path) {
 		this.value = id;

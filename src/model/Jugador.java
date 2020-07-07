@@ -1,7 +1,7 @@
 package model;
 
 public class Jugador {
-	int saldo;
+	private int saldo;
     
     public Jugador(int saldoInicial) {
 		this.saldo = saldoInicial;

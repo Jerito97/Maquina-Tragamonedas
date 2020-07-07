@@ -1,12 +1,12 @@
 package modelView;
 
-public class ModelView {
+public class PremioView {
 	int monto;
 	String nombreElemento1;
 	String nombreElemento2;
 	String nombreElemento3;
 	
-	public ModelView(int monto, String nombre1, String nombre2, String nombre3) {
+	public PremioView(int monto, String nombre1, String nombre2, String nombre3) {
 		this.nombreElemento1 = nombre1;
 		this.nombreElemento2 = nombre2;
 		this.nombreElemento3 = nombre3;

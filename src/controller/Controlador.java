@@ -9,7 +9,7 @@ import javax.swing.JOptionPane;
 
 import model.Jugador;
 import model.Symbol;
-import modelView.ModelView;
+import modelView.PremioView;
 
 public class Controlador {
 	private static Controlador instancia = null;
@@ -64,8 +64,9 @@ public class Controlador {
 	}
 
 	public void agregarPremiosDefault() {
-		premiosArray.add(new Premio(bell, bell, bell, 50));
+		premiosArray.add(new Premio(bell, noAplica, noAplica, 50));
 		premiosArray.add(new Premio(plum, plum, plum, 100));
+		premiosArray.add(new Premio(bell, bell, noAplica, 150));
 	}
 	
 	public int getSaldo() {
@@ -90,22 +91,27 @@ public class Controlador {
 	}
 
 	public void chequear(int valSymbol1, int valSymbol2, int valSymbol3) {
-
-		//GANAR CON LOS 3 IGUALES
-		if ((valSymbol1 == valSymbol2) && (valSymbol1 == valSymbol3) ) {
+		int montoPremio = 0;
+		
+		for (int i = 0; i < this.premiosArray.size(); ++i) {
+			boolean status = this.premiosArray.get(i).isPrize(valSymbol1, valSymbol2, valSymbol3);
+			if (status) {
+				montoPremio = this.premiosArray.get(i).getMonto();
+			}
+		}
+		
+		if (montoPremio > 0) {
 			int reply = JOptionPane.showConfirmDialog(null, "GANASTE!\n Queres aceptarlo?", "", JOptionPane.YES_NO_OPTION);
 			if (reply == JOptionPane.YES_OPTION) {
-				int wonAmnt = (valSymbol1 + 1) * 50;
-
-				if (pozoAcumulado>=wonAmnt) {
+				if (pozoAcumulado >= montoPremio) {
 					//Se paga todo el premio
-					pozoAcumulado = pozoAcumulado - wonAmnt;
-					this.jugador.setSaldo(wonAmnt);
+					pozoAcumulado = pozoAcumulado - montoPremio;
+					this.jugador.setSaldo(montoPremio);
 				} else {
 					//El pozo acumulado no es suficiente para pagar toda la ganancia
 					this.jugador.setSaldo(pozoAcumulado);
+					JOptionPane.showConfirmDialog(null, "La maquina se quedo sin dinero! Solamente ganaras: " + pozoAcumulado, "Sin Dinero!", JOptionPane.YES_NO_OPTION);
 					pozoAcumulado = 0;
-					System.exit(0);
 				}
 
 			}
@@ -132,7 +138,7 @@ public class Controlador {
 
 	private int numeroAzar() {
 		Random rand = new Random();
-		return rand.nextInt(5);
+		return rand.nextInt(6);
 	}
 	
 	public void addPremio(int monto, int valor1, int valor2, int valor3) {
@@ -157,14 +163,14 @@ public class Controlador {
 		premiosArray.remove(posicion);
 	}
 	
-	public ArrayList<ModelView> getPremios() {
-		ArrayList<ModelView> viewArray = new ArrayList<ModelView>();
+	public ArrayList<PremioView> getPremios() {
+		ArrayList<PremioView> viewArray = new ArrayList<PremioView>();
 		for (int i = 0; i < this.premiosArray.size(); ++i) {
 			String uno = this.premiosArray.get(i).nombre1();
 			String dos = this.premiosArray.get(i).nombre2();
 			String tres = this.premiosArray.get(i).nombre3();
 			int monto = this.premiosArray.get(i).getMonto();
-			ModelView view = new ModelView(monto, uno, dos, tres);
+			PremioView view = new PremioView(monto, uno, dos, tres);
 			viewArray.add(view);
 		}
 		return viewArray;

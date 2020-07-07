@@ -1,5 +1,7 @@
 package model;
 
+import java.util.ArrayList;
+
 public class Premio {
 	private String nombre;
 	private int montoPremio;
@@ -16,9 +18,36 @@ public class Premio {
 		this.montoPremio = monto;
 	}
 	
-	public boolean isPrize() {
+	public boolean isPrize(int valor1, int valor2, int valor3) {
+		int[] valuesArray = new int[] {valor1, valor2, valor3};
+		ArrayList<Symbol> simbolosArrayValidos = new ArrayList<Symbol>();
+		ArrayList<Symbol> simbolosArrayAux = new ArrayList<Symbol>();
 		
-		return true;
+		simbolosArrayValidos.add(uno);
+		simbolosArrayValidos.add(dos);
+		simbolosArrayValidos.add(tres);
+		
+		
+		for (int i = 0; i < simbolosArrayValidos.size(); ++i) {
+			if (simbolosArrayValidos.get(i).getValue() != -1) {
+				simbolosArrayAux.add(simbolosArrayValidos.get(i));
+			}
+		}
+		
+		for (int i = 0; i < valuesArray.length; ++i) {
+			int j = 0;
+			while (simbolosArrayAux.size() > j && simbolosArrayAux.get(j).getValue() != valuesArray[i]) {
+				j++;
+			}
+			if (simbolosArrayAux.size() > j) {
+				simbolosArrayAux.remove(j);
+			}
+		}
+		if (simbolosArrayAux.size() == 0) {
+			return true;
+		} else {
+			return false;
+		}
 	}
 	
 	public String getNombre() {
