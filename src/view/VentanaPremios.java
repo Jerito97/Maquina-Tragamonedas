@@ -34,7 +34,8 @@ public class VentanaPremios extends JFrame {
 	JLabel eliminarPremios;
 	JLabel listaPremios;
 	JComboBox<String> lista;
-	JLabel montoEliminar;
+//	JLabel montoEliminar;
+//	JLabel montoEliminarDisplay;
 	JLabel fruta1Eliminar;
 	JLabel fruta2Eliminar;
 	JLabel fruta3Eliminar;
@@ -50,6 +51,7 @@ public class VentanaPremios extends JFrame {
 	String[] frutas = {"Campana", "Cherry", "Limon", "Ciruela", "Siete Rojo", "Melon", "-"};
 
 	ArrayList<ModelView> premiosArray = new ArrayList<ModelView>();
+	
 
 
 	public VentanaPremios () {
@@ -59,6 +61,8 @@ public class VentanaPremios extends JFrame {
 
 	private void configurar() {
 		controlador = controlador.miInstancia(0);
+		
+
 
 		Container contenedor = this.getContentPane();
 		contenedor.setLayout(null);
@@ -96,8 +100,11 @@ public class VentanaPremios extends JFrame {
 		lista = new JComboBox();
 		lista.setBounds(15, 55, 260, 25);
 
-		montoEliminar = new JLabel("Monto: ");
-		montoEliminar.setBounds(15, 91, 70, 25);
+//		montoEliminar = new JLabel("Monto:");
+//		montoEliminar.setBounds(15, 91, 40, 25);
+		
+//		montoEliminarDisplay = new JLabel();
+//		montoEliminarDisplay.setBounds(60, 91, 70, 25);
 
 		montoAgregarLabel = new JLabel("Monto");
 		montoAgregarLabel.setHorizontalAlignment(SwingConstants.CENTER);
@@ -144,7 +151,10 @@ public class VentanaPremios extends JFrame {
 		contenedor.add(fruta2);
 		contenedor.add(fruta3AgregarLabel);
 		contenedor.add(fruta3);
-		contenedor.add(montoEliminar);
+//		contenedor.add(montoEliminar);
+//		contenedor.add(montoEliminarDisplay);
+		
+		actualizarLista();
 	}
 
 	private void actualizarLista() {
@@ -153,9 +163,9 @@ public class VentanaPremios extends JFrame {
 		for (int i = 0; i < premiosArray.size(); ++i) {
 			String nombre = premiosArray.get(i).getNombre1() + " - " + premiosArray.get(i).getNombre2() + " - " + premiosArray.get(i).getNombre3();
 			lista.addItem(nombre);
-			System.out.print(lista.getItemAt(i));
 		}
 	}
+	
 
 	private boolean checkEstado() {
 		if (fruta1.getSelectedIndex() < 6 || fruta2.getSelectedIndex() < 6 || fruta3.getSelectedIndex() < 6) {
@@ -184,12 +194,22 @@ public class VentanaPremios extends JFrame {
 					if (checkEstado() && saldo > 0) {
 						controlador.addPremio(saldo, fruta1.getSelectedIndex(), fruta2.getSelectedIndex(), fruta3.getSelectedIndex());
 						actualizarLista();
+						System.out.print(premiosArray);
 					}
 				}
 			}
 
 		});
 
+		eliminar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				int index = lista.getSelectedIndex();
+				controlador.eliminarPremio(index);
+				actualizarLista();
+				
+			}
+		});
+		
 		lista.addActionListener( new ActionListener() {
 			public void actionPerformed(ActionEvent actionEvent) {
 				ItemSelectable  is = (ItemSelectable )actionEvent.getSource();
