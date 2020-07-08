@@ -31,7 +31,7 @@ public class VentanaInicio extends JFrame {
     	entrar = new JButton("Jugar");
     	entrar.setBounds(100, 11, 85, 40);
     	
-    	adminPremios = new JButton("Administrar Premios");
+    	adminPremios = new JButton("Administrar");
     	adminPremios.setBounds(62, 62, 160, 40);
     	
     	contenedor.add(entrar);

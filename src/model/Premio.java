@@ -15,7 +15,7 @@ public class Premio {
 		this.uno = simbolo1;
 		this.dos = simbolo2;
 		this.tres = simbolo3;
-		this.montoPremio = monto;
+		this.montoPremio = monto; 
 	}
 	
 	public boolean isPrize(int valor1, int valor2, int valor3) {

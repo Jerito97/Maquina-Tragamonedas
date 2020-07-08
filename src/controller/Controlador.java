@@ -90,7 +90,7 @@ public class Controlador {
 		return arr;
 	}
 
-	public void chequear(int valSymbol1, int valSymbol2, int valSymbol3) {
+	public int chequear(int valSymbol1, int valSymbol2, int valSymbol3) {
 		int montoPremio = 0;
 		
 		for (int i = 0; i < this.premiosArray.size(); ++i) {
@@ -99,9 +99,11 @@ public class Controlador {
 				montoPremio = this.premiosArray.get(i).getMonto();
 			}
 		}
-		
+		return montoPremio;
+		/*
 		if (montoPremio > 0) {
 			int reply = JOptionPane.showConfirmDialog(null, "GANASTE!\n Queres aceptarlo?", "", JOptionPane.YES_NO_OPTION);
+			
 			if (reply == JOptionPane.YES_OPTION) {
 				if (pozoAcumulado >= montoPremio) {
 					//Se paga todo el premio
@@ -113,9 +115,9 @@ public class Controlador {
 					JOptionPane.showConfirmDialog(null, "La maquina se quedo sin dinero! Solamente ganaras: " + pozoAcumulado, "Sin Dinero!", JOptionPane.YES_NO_OPTION);
 					pozoAcumulado = 0;
 				}
-
 			}
 		}
+		*/
 	}
 	
 	public int getPozoAcumulado() {
@@ -153,8 +155,9 @@ public class Controlador {
 				simbolo = this.simbolosArray.get(i);
 			}
 		}
+		
 		if (simbolo == null) {
-			simbolo = new Symbol("N/A", -1, "N/A");
+			simbolo = this.noAplica;
 		}
 		return simbolo;
 	}
@@ -176,4 +179,15 @@ public class Controlador {
 		return viewArray;
 	}
 	
+	public void aceptarPremio(int monto) {
+		if (pozoAcumulado >= monto) {
+			//Se paga todo el premio
+			pozoAcumulado = pozoAcumulado - monto;
+			this.jugador.setSaldo(monto);
+		} else {
+			//El pozo acumulado no es suficiente para pagar toda la ganancia
+			this.jugador.setSaldo(pozoAcumulado);
+			pozoAcumulado = 0;
+		}
+	}
 }

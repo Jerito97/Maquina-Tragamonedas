@@ -61,7 +61,7 @@ public class VentanaPremios extends JFrame {
 		contenedor.setLayout(null);
 		this.setSize(300, 400);
 		this.setResizable(false);
-		this.setTitle("Administrar Premios");
+		this.setTitle("Administrar");
 		JSeparator separator = new JSeparator();
 		separator.setBounds(0, 175, 300, 2);
 		contenedor.add(separator);

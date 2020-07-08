@@ -173,8 +173,17 @@ public class VentanaJuego extends JFrame{
     			if (isSpinning == true) {
     				int[] symbolIDs = controlador.frenar();
         			actualizarImagenSymbol(symbolIDs[0], symbolIDs[1], symbolIDs[2]);
-        			controlador.chequear(symbolIDs[0], symbolIDs[1], symbolIDs[2]);
-
+        			int monto = controlador.chequear(symbolIDs[0], symbolIDs[1], symbolIDs[2]);
+        			if (monto > 0) {
+        				int reply = JOptionPane.showConfirmDialog(null, "GANASTE!\n Queres aceptarlo?", "", JOptionPane.YES_NO_OPTION);
+        				if (reply == JOptionPane.YES_OPTION) {
+        					if (controlador.getPozoAcumulado() < monto) {
+        						//Se paga todo el premio
+        						JOptionPane.showConfirmDialog(null, "La maquina se quedo sin dinero! Solamente ganaras: " + controlador.getPozoAcumulado(), "Sin Dinero!", JOptionPane.YES_NO_OPTION);
+        					}
+        					controlador.aceptarPremio(monto);
+        				}
+        			}
         			int texto = controlador.getPozoAcumulado();
         			incomeDisplay.setText(String.valueOf(texto));
 
